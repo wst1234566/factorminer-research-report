@@ -1,0 +1,62 @@
+{
+  "schema": "rolling_web_snapshot_v1",
+  "as_of": "2026-10-03T02:51:46.307121Z",
+  "captured_at": "2026-10-03T03:07:15.068040+00:00",
+  "planned": 1032,
+  "ds_planned": 516,
+  "request_cap": 13000,
+  "old_inherited_requests": 188,
+  "by_model": {
+    "deepseek": {
+      "planned": 516,
+      "valid_evaluated": 395,
+      "blocked": 0,
+      "data_not_applicable": 0,
+      "empty": 41,
+      "failed": 68,
+      "incompatible": 0,
+      "not_started": 0,
+      "partial": 12,
+      "running": 0,
+      "valid": 395
+    },
+    "glm": {
+      "planned": 516,
+      "valid_evaluated": 77,
+      "blocked": 0,
+      "data_not_applicable": 0,
+      "empty": 2,
+      "failed": 126,
+      "incompatible": 1,
+      "not_started": 303,
+      "partial": 7,
+      "running": 0,
+      "valid": 77
+    }
+  },
+  "source_hashes": {
+    "coverage.json": "09908f0e07b78821e9f4e8bf1cbe50f985aa4040c1a86ea83e9dc6a0c530342a",
+    "summary.csv": "e64011d97934eb7e218feeb9124d6dedf7ec8ba595a34f519d11d8d31149fa06",
+    "paired_differences.csv": "dd0e975b9fa46dbef0bd6a9b32005f83299389fbe49f67bf333fe72f13602054",
+    "paired_summary.csv": "68ac85dbbbb6e4b6bc35572be75a122fc3015353f1c9985a4b844f95d057eff6",
+    "descriptive_statistics.csv": "5596cc18f70fcbcfef7f7b387f62f211ae0b17f5e69030c0ebe8b8c899734190"
+  },
+  "usage": {
+    "started_requests_manifest": 5512,
+    "ledger_started_requests": 5512,
+    "ledger_completed_requests": 5512,
+    "ledger_inflight_requests": 0,
+    "completed_unknown_usage_requests": 124,
+    "unit_linked_started_requests": 5512.0,
+    "known_unit_tokens": 34020139.0,
+    "units_with_unknown_usage_requests": 124,
+    "request_cap": 13000,
+    "reserved_requests": 0
+  },
+  "checks": {
+    "unique_units": 1032,
+    "source_pairs_checked": 450,
+    "source_pairs_total": 516,
+    "coverage_conserved": true
+  }
+}

@@ -1,0 +1,464 @@
+{
+  "scope": "DeepSeek within-model plus exact-arm Flash-GLM descriptive comparisons",
+  "by_arm": {
+    "M0": {
+      "valid": 115,
+      "empty": 12,
+      "partial": 2
+    },
+    "M1": {
+      "valid": 113,
+      "empty": 13,
+      "failed": 1,
+      "partial": 2
+    },
+    "M2": {
+      "valid": 114,
+      "partial": 4,
+      "empty": 9,
+      "failed": 2
+    },
+    "M3": {
+      "failed": 65,
+      "valid": 53,
+      "partial": 4,
+      "empty": 7
+    }
+  },
+  "contrasts": [
+    {
+      "contrast": "M3-M2",
+      "n": 52,
+      "independent_years": 12,
+      "metrics": {
+        "rank_ic": {
+          "n": 52,
+          "mean": -0.001059839360591637,
+          "year_equal_mean": -0.0017072800774885714
+        },
+        "rank_icir": {
+          "n": 52,
+          "mean": 0.0002251102232518351,
+          "year_equal_mean": -0.012691881863319184
+        },
+        "gross_cumulative_return": {
+          "n": 52,
+          "mean": -0.0011770931421193982,
+          "year_equal_mean": -0.01383828179846384
+        },
+        "net_cumulative_return": {
+          "n": 52,
+          "mean": 7.8924614183951e-05,
+          "year_equal_mean": -0.012461224878735511
+        },
+        "relative_cumulative_return": {
+          "n": 52,
+          "mean": 0.0021894814377947103,
+          "year_equal_mean": -0.007249558312382956
+        },
+        "excess_cagr": {
+          "n": 52,
+          "mean": 1.9425884833587008e-06,
+          "year_equal_mean": -0.013195915939230722
+        },
+        "sharpe": {
+          "n": 52,
+          "mean": 0.02527973722468399,
+          "year_equal_mean": -0.007550934047920951
+        },
+        "max_drawdown": {
+          "n": 52,
+          "mean": 0.00023596379176214871,
+          "year_equal_mean": -0.0034260393370271524
+        },
+        "turnover_two_sided_daily_mean": {
+          "n": 52,
+          "mean": -0.005402818332266415,
+          "year_equal_mean": -0.004999367494161766
+        },
+        "cost_0bps_excess_cagr": {
+          "n": 52,
+          "mean": -0.0012962810148937332,
+          "year_equal_mean": -0.014630164899638321
+        },
+        "cost_5bps_excess_cagr": {
+          "n": 52,
+          "mean": -0.000629142988760957,
+          "year_equal_mean": -0.013892385765360142
+        },
+        "cost_10bps_excess_cagr": {
+          "n": 52,
+          "mean": 1.9425884833587008e-06,
+          "year_equal_mean": -0.013195915939230722
+        },
+        "cost_20bps_excess_cagr": {
+          "n": 52,
+          "mean": 0.0010794322970258418,
+          "year_equal_mean": -0.012129298533931018
+        }
+      }
+    },
+    {
+      "contrast": "M3-M0",
+      "n": 51,
+      "independent_years": 12,
+      "metrics": {
+        "rank_ic": {
+          "n": 51,
+          "mean": -0.00302193647984292,
+          "year_equal_mean": -0.0026528346856558942
+        },
+        "rank_icir": {
+          "n": 51,
+          "mean": -0.01721366255910006,
+          "year_equal_mean": -0.037973115970022626
+        },
+        "gross_cumulative_return": {
+          "n": 51,
+          "mean": -0.005316953167593051,
+          "year_equal_mean": -0.005605737474440446
+        },
+        "net_cumulative_return": {
+          "n": 51,
+          "mean": 0.0026675602618566477,
+          "year_equal_mean": 0.008228479320862944
+        },
+        "relative_cumulative_return": {
+          "n": 51,
+          "mean": 0.005683173464399609,
+          "year_equal_mean": 0.011286960401261788
+        },
+        "excess_cagr": {
+          "n": 51,
+          "mean": 0.0027375749470025935,
+          "year_equal_mean": 0.008701845695139668
+        },
+        "sharpe": {
+          "n": 51,
+          "mean": 0.05227608854894421,
+          "year_equal_mean": 0.08837448216689248
+        },
+        "max_drawdown": {
+          "n": 51,
+          "mean": 0.008071873557994973,
+          "year_equal_mean": 0.011171811896979618
+        },
+        "turnover_two_sided_daily_mean": {
+          "n": 51,
+          "mean": -0.027091546527468178,
+          "year_equal_mean": -0.04495824895631726
+        },
+        "cost_0bps_excess_cagr": {
+          "n": 51,
+          "mean": -0.005653565417179418,
+          "year_equal_mean": -0.005909591620291434
+        },
+        "cost_5bps_excess_cagr": {
+          "n": 51,
+          "mean": -0.0013462340863966888,
+          "year_equal_mean": 0.0015921791998740524
+        },
+        "cost_10bps_excess_cagr": {
+          "n": 51,
+          "mean": 0.0027375749470025935,
+          "year_equal_mean": 0.008701845695139668
+        },
+        "cost_20bps_excess_cagr": {
+          "n": 51,
+          "mean": 0.010386971084453947,
+          "year_equal_mean": 0.021989781779424147
+        }
+      }
+    },
+    {
+      "contrast": "M1-M0",
+      "n": 109,
+      "independent_years": 16,
+      "metrics": {
+        "rank_ic": {
+          "n": 109,
+          "mean": -0.00467386013597373,
+          "year_equal_mean": -0.006091651710093724
+        },
+        "rank_icir": {
+          "n": 109,
+          "mean": -0.03921745981489586,
+          "year_equal_mean": -0.053233752528149186
+        },
+        "gross_cumulative_return": {
+          "n": 109,
+          "mean": -0.008836974339842228,
+          "year_equal_mean": -0.01994172783165392
+        },
+        "net_cumulative_return": {
+          "n": 109,
+          "mean": -0.005442646107319767,
+          "year_equal_mean": -0.01374519626729548
+        },
+        "relative_cumulative_return": {
+          "n": 109,
+          "mean": -0.003814775771813272,
+          "year_equal_mean": -0.007768961906816474
+        },
+        "excess_cagr": {
+          "n": 109,
+          "mean": -0.005844381915287932,
+          "year_equal_mean": -0.01480984980496461
+        },
+        "sharpe": {
+          "n": 109,
+          "mean": 0.014937024267988633,
+          "year_equal_mean": 0.007011247106326437
+        },
+        "max_drawdown": {
+          "n": 109,
+          "mean": -0.0016114358595209774,
+          "year_equal_mean": -0.0008220714967785853
+        },
+        "turnover_two_sided_daily_mean": {
+          "n": 109,
+          "mean": -0.01029121141270145,
+          "year_equal_mean": -0.01861343864154451
+        },
+        "cost_0bps_excess_cagr": {
+          "n": 109,
+          "mean": -0.009425807825612127,
+          "year_equal_mean": -0.021383042993672687
+        },
+        "cost_5bps_excess_cagr": {
+          "n": 109,
+          "mean": -0.007602598272628889,
+          "year_equal_mean": -0.01803936017209382
+        },
+        "cost_10bps_excess_cagr": {
+          "n": 109,
+          "mean": -0.005844381915287932,
+          "year_equal_mean": -0.01480984980496461
+        },
+        "cost_20bps_excess_cagr": {
+          "n": 109,
+          "mean": -0.0025446755593026608,
+          "year_equal_mean": -0.008684938844883793
+        }
+      }
+    },
+    {
+      "contrast": "M2-M1",
+      "n": 108,
+      "independent_years": 16,
+      "metrics": {
+        "rank_ic": {
+          "n": 108,
+          "mean": 0.0005858876605503874,
+          "year_equal_mean": 0.00010897560237054124
+        },
+        "rank_icir": {
+          "n": 108,
+          "mean": 0.01218507434223381,
+          "year_equal_mean": 0.005217241776531582
+        },
+        "gross_cumulative_return": {
+          "n": 108,
+          "mean": 0.002038598555381664,
+          "year_equal_mean": 0.004925977726620352
+        },
+        "net_cumulative_return": {
+          "n": 108,
+          "mean": 0.004241142604426418,
+          "year_equal_mean": 0.009011305809172086
+        },
+        "relative_cumulative_return": {
+          "n": 108,
+          "mean": 0.0049498454490081185,
+          "year_equal_mean": 0.006553456776777122
+        },
+        "excess_cagr": {
+          "n": 108,
+          "mean": 0.004398425589145672,
+          "year_equal_mean": 0.009525152036824374
+        },
+        "sharpe": {
+          "n": 108,
+          "mean": 0.01727650922295986,
+          "year_equal_mean": 0.02008656307906254
+        },
+        "max_drawdown": {
+          "n": 108,
+          "mean": 0.007287493336500727,
+          "year_equal_mean": 0.005612204748932094
+        },
+        "turnover_two_sided_daily_mean": {
+          "n": 108,
+          "mean": -0.004681051107439784,
+          "year_equal_mean": -0.007711413253835922
+        },
+        "cost_0bps_excess_cagr": {
+          "n": 108,
+          "mean": 0.0020324575937986328,
+          "year_equal_mean": 0.0051371252665500635
+        },
+        "cost_5bps_excess_cagr": {
+          "n": 108,
+          "mean": 0.003258899000303528,
+          "year_equal_mean": 0.0074094567277957464
+        },
+        "cost_10bps_excess_cagr": {
+          "n": 108,
+          "mean": 0.004398425589145672,
+          "year_equal_mean": 0.009525152036824374
+        },
+        "cost_20bps_excess_cagr": {
+          "n": 108,
+          "mean": 0.006437770869734614,
+          "year_equal_mean": 0.013301189245466558
+        }
+      }
+    },
+    {
+      "contrast": "M3-M1",
+      "n": 50,
+      "independent_years": 12,
+      "metrics": {
+        "rank_ic": {
+          "n": 50,
+          "mean": -0.0017808671639625232,
+          "year_equal_mean": -0.0014915061402156738
+        },
+        "rank_icir": {
+          "n": 50,
+          "mean": 0.0008025872673254594,
+          "year_equal_mean": 0.0054329115348099805
+        },
+        "gross_cumulative_return": {
+          "n": 50,
+          "mean": -0.009619374457153385,
+          "year_equal_mean": -0.016225310715192585
+        },
+        "net_cumulative_return": {
+          "n": 50,
+          "mean": -0.005971183674976408,
+          "year_equal_mean": -0.012326044670834101
+        },
+        "relative_cumulative_return": {
+          "n": 50,
+          "mean": -0.0004248540755900398,
+          "year_equal_mean": -0.005317078822468735
+        },
+        "excess_cagr": {
+          "n": 50,
+          "mean": -0.006405648181562886,
+          "year_equal_mean": -0.012939439952952375
+        },
+        "sharpe": {
+          "n": 50,
+          "mean": 0.00467145399285021,
+          "year_equal_mean": -0.004466138853765834
+        },
+        "max_drawdown": {
+          "n": 50,
+          "mean": 0.0069835428197090495,
+          "year_equal_mean": 0.003435661781086343
+        },
+        "turnover_two_sided_daily_mean": {
+          "n": 50,
+          "mean": -0.011704906127693307,
+          "year_equal_mean": -0.01042343524080615
+        },
+        "cost_0bps_excess_cagr": {
+          "n": 50,
+          "mean": -0.010255228877596839,
+          "year_equal_mean": -0.017066257874982685
+        },
+        "cost_5bps_excess_cagr": {
+          "n": 50,
+          "mean": -0.008277337244361574,
+          "year_equal_mean": -0.014945379278948128
+        },
+        "cost_10bps_excess_cagr": {
+          "n": 50,
+          "mean": -0.006405648181562886,
+          "year_equal_mean": -0.012939439952952375
+        },
+        "cost_20bps_excess_cagr": {
+          "n": 50,
+          "mean": -0.002971299361979067,
+          "year_equal_mean": -0.009397547661897356
+        }
+      }
+    },
+    {
+      "contrast": "Flash-GLM",
+      "n": 66,
+      "independent_years": 11,
+      "metrics": {
+        "rank_ic": {
+          "n": 66,
+          "mean": 0.0016787930045522072,
+          "year_equal_mean": 0.006507766983589204
+        },
+        "rank_icir": {
+          "n": 66,
+          "mean": 0.018600746520227696,
+          "year_equal_mean": 0.09047738842501828
+        },
+        "gross_cumulative_return": {
+          "n": 66,
+          "mean": 0.005732901116988596,
+          "year_equal_mean": 0.036050488689840524
+        },
+        "net_cumulative_return": {
+          "n": 66,
+          "mean": 0.005574118563733854,
+          "year_equal_mean": 0.03509819698881789
+        },
+        "relative_cumulative_return": {
+          "n": 66,
+          "mean": 0.006888692288075917,
+          "year_equal_mean": 0.03277349176791537
+        },
+        "excess_cagr": {
+          "n": 66,
+          "mean": 0.005853497342350896,
+          "year_equal_mean": 0.03718661042474868
+        },
+        "sharpe": {
+          "n": 66,
+          "mean": 0.025125272454653468,
+          "year_equal_mean": 0.12986426561300501
+        },
+        "max_drawdown": {
+          "n": 66,
+          "mean": 0.005808788373585261,
+          "year_equal_mean": 0.015665427502266512
+        },
+        "turnover_two_sided_daily_mean": {
+          "n": 66,
+          "mean": 5.7455349339248845e-05,
+          "year_equal_mean": -0.003347766078327219
+        },
+        "cost_0bps_excess_cagr": {
+          "n": 66,
+          "mean": 0.0060475864071276655,
+          "year_equal_mean": 0.03837733026220533
+        },
+        "cost_5bps_excess_cagr": {
+          "n": 66,
+          "mean": 0.0059939729365852575,
+          "year_equal_mean": 0.037861106356436955
+        },
+        "cost_10bps_excess_cagr": {
+          "n": 66,
+          "mean": 0.005853497342350896,
+          "year_equal_mean": 0.03718661042474868
+        },
+        "cost_20bps_excess_cagr": {
+          "n": 66,
+          "mean": 0.005675766805544842,
+          "year_equal_mean": 0.036291301520608395
+        }
+      }
+    }
+  ],
+  "annual_accounts_independent": true,
+  "missing_not_imputed": true
+}
