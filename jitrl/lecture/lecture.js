@@ -1,5 +1,5 @@
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const data=await fetch('content.json').then(r=>{if(!r.ok)throw new Error('讲义内容暂不可用');return r.json()});
+const data=await fetch('content.json?v=20261010-2').then(r=>{if(!r.ok)throw new Error('讲义内容暂不可用');return r.json()});
 const pages=data.slides;const params=new URLSearchParams(location.search);
 let current=Math.max(0,Math.min(pages.length-1,Number(params.get('slide')||location.hash.replace('#page-','')||1)-1));
 let present=params.has('slide');
