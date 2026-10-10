@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#17483f">
+  <meta name="description" content="用一个查找客户评价的案例，逐步计算 JitRL 的回报、价值、优势和动作概率，交互式精读论文。">
+  <title>JitRL · 把经验算进下一次选择</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#lab">跳到逐步计算</a>
+  <header class="topbar">
+    <a href="#intro" class="brand" aria-label="JitRL 精读首页"><span class="brand-mark">J.</span><span>JitRL <small>论文精读</small></span></a>
+    <nav aria-label="主导航"><a href="#lab">逐步计算</a><a href="#theory">理论</a><a href="#evidence">实验</a><a href="#outline">PPT 取舍 <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <section class="hero wrap" id="intro">
+      <div class="hero-copy">
+        <p class="eyebrow">PAPER WALKTHROUGH <span>·</span> arXiv:2601.18510v4</p>
+        <h1>把经验算进<br>下一次<span>选择</span>。</h1>
+        <p class="hero-lead">模型参数不动，动作概率可以变。<br>用一次“查找客户评价”的任务，算清 JitRL 如何从历史中学习。</p>
+        <div class="hero-actions"><a class="button primary" href="#lab">开始逐步计算 <span aria-hidden="true">→</span></a><a class="text-link" href="https://arxiv.org/abs/2601.18510v4" target="_blank" rel="noreferrer">阅读原论文 ↗</a></div>
+        <p class="byline">Li et al. · National University of Singapore · v4 / 2026.09.27</p>
+      </div>
+      <div class="hero-evidence" aria-label="默认教学案例中的 Marketing 动作概率变化">
+        <div class="mini-caption">同一状态 · 同一冻结模型</div>
+        <div class="big-change"><span>33.8<small>%</small></span><span class="arrow">→</span><strong>69.7<small>%</small></strong></div>
+        <p>点击 <b>Marketing</b> 的概率</p>
+        <div class="mini-track"><i style="width:33.8%"></i></div><div class="mini-track teal"><i style="width:69.7%"></i></div>
+        <div class="hero-loop"><span>历史回报</span><b>+</b><span>模型偏好</span><b>→</b><span>新的策略</span></div>
+        <p class="fineprint">默认教学示例，非论文实验日志。<br>后文每个中间值都可展开核算。</p>
+      </div>
+    </section>
+
+    <section class="premise wrap" aria-label="任务与方法">
+      <div><span class="section-number">01 / 出发点</span><h2>“评价”应该去哪个菜单找？</h2></div>
+      <div class="premise-copy"><p>基座模型觉得 <b>Catalog</b> 更像正确入口，但论文的真实案例中，客户评价在 <b>Marketing</b>。JitRL 检索过去的行动及其后果，把经验变成对候选动作的数值修正。</p><p class="source">原始场景与定性纠偏：Table 7，p.8。以下奖励、轨迹和数值是为讲解构造的独立案例。</p></div>
+    </section>
+
+    <section class="lab-section" id="lab">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="section-number">02 / 逐步计算</p><h2>跟着一条完整的计算链走</h2></div><p>左边选择步骤，右边调整参数。<br>所有中间值与动作概率同步重算。</p></div>
+        <div class="lab-layout">
+          <nav class="step-nav" id="step-nav" aria-label="计算步骤"></nav>
+          <article class="stage" aria-labelledby="stage-title">
+            <div class="stage-top"><span id="stage-count">01 / 11</span><span class="example-label">教学示例</span></div>
+            <h3 id="stage-title"></h3><p class="stage-lead" id="stage-lead"></p>
+            <div id="stage-content"></div>
+            <div class="stage-bottom"><a id="stage-source" target="_blank" rel="noreferrer"></a><div class="step-arrows"><button type="button" id="prev" aria-label="上一步">←</button><button type="button" id="next">下一步 →</button></div></div>
+          </article>
+          <aside class="inspector" aria-label="参数与实时动作概率">
+            <div class="inspector-head"><h3>参数实验</h3><button class="reset-button" type="button" id="reset">恢复默认</button></div>
+            <label class="range-label" for="beta">经验修正强度 <b>β <output id="beta-output">1.00</output></b></label>
+            <input id="beta" type="range" min="0" max="3" step="0.05" value="1" aria-describedby="beta-help">
+            <p id="beta-help" class="control-help">β=0 保留基座；越大越偏向历史优势。默认 β=1 是教学选择。</p>
+            <label class="range-label" for="gamma">未来奖励权重 <b>γ <output id="gamma-output">0.10</output></b></label>
+            <input id="gamma" type="range" min="0" max="1" step="0.05" value="0.1" aria-describedby="gamma-help">
+            <p id="gamma-help" class="control-help">默认 γ=0.1 参照 Table 11。本页保留逐步奖励，改变 γ 时重算 G；只存 G 的真实记忆不会自动重算。</p>
+            <label class="toggle-row"><input id="normalize" type="checkbox" checked><span>按论文实现归一化优势<small>关闭后用于对照正文公式</small></span></label>
+            <label class="toggle-row"><input id="new-memory" type="checkbox"><span>加入一条新的成功经验<small>起始回报由 [2,3,3] 计算</small></span></label>
+            <div class="distribution"><h4>此刻会怎样选择？</h4><div class="chart-legend"><span><i class="base-dot"></i>基座</span><span><i class="new-dot"></i>修正后</span></div><div id="probability-bars"></div></div>
+            <p class="memory-status" id="memory-status" aria-live="polite"></p>
+          </aside>
+        </div>
+        <div class="glossary"><b>符号速查</b><span><i>r</i> 逐步奖励</span><span><i>G</i> 折扣回报</span><span><i>Q</i> 动作价值估计</span><span><i>V</i> 状态基线估计</span><span><i>A</i> 相对优势估计</span><span><i>π</i> 选择概率</span></div>
+      </div>
+    </section>
+
+    <section class="wrap theory-section" id="theory">
+      <div class="section-heading"><div><p class="section-number">03 / 理论解释</p><h2>为什么可以直接“加优势”？</h2></div><p>精确求解的是一个局部正则化目标，<br>不是无条件保证真实任务最优。</p></div>
+      <div class="theory-layout"><div>
+        <p>把更好的历史经验用起来，同时不要完全偏离基座模型。对固定状态与候选集合，论文把这两件事写成同一个目标：</p>
+        <div class="equation big">max<sub>p</sub> <span class="good">∑<sub>a</sub> p(a)Ã(a)</span> − <span class="muted">(1/β) D<sub>KL</sub>(p ‖ π₀)</span></div>
+        <div class="equation-labels"><span>鼓励高优势动作</span><span>惩罚过度偏离基座</span></div>
+        <p>对概率求导，再用总和为 1 的约束归一化，得到：</p>
+        <div class="equation">p*(a) ∝ π₀(a) exp[βÃ(a)]</div>
+        <p>由于 π₀=Softmax(z)，上式等价于 <b>Softmax(z+βÃ)</b>。不需要对模型参数反向传播。</p>
+        <p class="source">Theorem 4.1 / Appendix B，pp.4、11–12。这里用实现中的归一化优势 Ã；相对原始 A 的有效强度为 β/(max|A|+ε)。推导要求 β&gt;0。</p>
+      </div><div class="theory-check"><p class="mini-caption">用右侧参数对应的案例核对</p><h3>当前估计目标的变化</h3><div id="objective-table"></div><p class="fineprint">目标使用当前优势估计；分数变高并不证明真实环境奖励一定增加。</p></div></div>
+      <div class="deep-dives">
+        <details><summary>展开推导：拉格朗日的一阶条件 <span>＋</span></summary><div class="detail-body"><p>令 u=Ã，并用 η 表示概率和约束的乘子，避免与探索率 λ 混淆。</p><div class="equation compact">L(p,η) = ∑p(a)u(a) − (1/β)∑p(a)log[p(a)/π₀(a)] + η(∑p(a)−1)</div><div class="equation compact">∂L/∂p(a) = u(a) − [1+log p(a)−log π₀(a)]/β + η = 0</div><p>因此 log p(a)=log π₀(a)+βu(a)+βη−1。指数化后，最后两项给出对所有动作相同的归一化常数。β&gt;0 且基座概率为正时，目标为严格凹函数，此解为给定目标的唯一最优解。</p></div></details>
+        <details><summary>没有历史的动作，如何鼓励探索？ <span>＋</span></summary><div class="detail-body"><p>新增一个基座提出、但邻域未见过的 <b>Help</b> 动作，基础 logit 设为 0.2。取 WebArena 的 λ=0.05、α=5。下面根据当前教学参数，分别完整计算两个分支：</p><div id="exploration-table"></div><p>λ 控制“赋予乐观价值”的概率，并非最终选中 Help 的概率。常规分支 Q=0，但 A=−V，不能设成 A=0；V 为负时，这个优势也可以为正。开启归一化时，每个分支都重新寻找最大绝对优势。</p><p class="source">Eq. (6)，p.4；Table 11，p.21。主案例中原有三个动作都有历史；这里单独解释未见动作。</p></div></details>
+        <details><summary>理论保证、真实实现与冷启动的距离 <span>＋</span></summary><div class="detail-body"><ul><li>一致性分析还要求价值随状态与策略平滑变化、k 随记忆增长而增大、k/N→0，各动作覆盖充分，且邻域策略漂移→0。固定 k=10 的实验不能直接获得同样的渐近保证。</li><li>评价噪声需要条件无偏；系统性错评会污染价值估计。评价器给出的逐步奖励也不等于环境真值。</li><li>模型输出候选索引的 logprob，或显式报告置信分并转换为代理 logits。两条路径都要明确分数的尺度。</li><li>候选集合合并模型候选与历史动作；仅来自记忆的动作初始化 z=0。两边都没有的动作不能凭空出现。</li><li>空邻域时可回退基座，避免 V 和 α/|N| 除零；这是实现建议，论文伪代码没有明确给出该分支。</li></ul><p class="source">§5.1，p.5；Appendix C–F，pp.12–16；Algorithm 1，p.26。</p></div></details>
+      </div>
+    </section>
+
+    <section class="evidence-section" id="evidence"><div class="wrap">
+      <div class="section-heading"><div><p class="section-number">04 / 实验与边界</p><h2>有效，但要把比较条件放在一起看</h2></div><p>实验结果固定引用原论文；<br>上面的教学参数不会改变这些数据。</p></div>
+      <div class="evidence-tabs" role="tablist" aria-label="实验结果"><button id="tab-main" role="tab" aria-selected="true" aria-controls="results-panel" data-result="main">WebArena 主结果</button><button id="tab-controlled" role="tab" aria-selected="false" aria-controls="results-panel" data-result="controlled">与训练方法的对照</button><button id="tab-ablation" role="tab" aria-selected="false" aria-controls="results-panel" data-result="ablation">消融与跨任务迁移</button><button id="tab-cost" role="tab" aria-selected="false" aria-controls="results-panel" data-result="cost">成本口径</button></div>
+      <div id="results-panel" role="tabpanel" aria-labelledby="tab-main"></div>
+      <div class="evaluation-note"><b>先分清 Avg 与 Final</b><p>WebArena 主文每任务连续尝试 5 轮：Avg 是全部尝试的成功率，Final 是第 5 轮成功率，不是 best-of-5。Jericho 用 50 轮游戏得分，量纲不同。</p></div>
+      <div class="evaluation-note"><b>从网页导航到文本游戏</b><div><p>Jericho 用文本命令推进游戏，连续运行 50 轮：Avg 是 50 轮平均游戏分数，Final 是第 50 轮分数。在同一 Gemini-2.5-flash 底座下，Zork1 的 Static 为 <b>Avg 8.5 / Final 10</b>，JitRL 为 <b>Avg 53.0 / Final 69</b>。该游戏分数上限为 350，69 分说明有所改善，还不代表通关。</p><p>这提供了网页之外的跨环境证据；论文只评估了 Library、Zork1、Zork3 三个游戏，不能据此推出对任意环境都有效。这里的数值是游戏分数，不是任务成功率。</p><p class="source"><a href="https://arxiv.org/pdf/2601.18510v4#page=6" target="_blank" rel="noreferrer">Table 3 · p.6 ↗</a>；<a href="https://arxiv.org/pdf/2601.18510v4#page=7" target="_blank" rel="noreferrer">Figure 3（分数上限）· p.7 ↗</a></p></div></div>
+      <details class="paper-notes"><summary>精读时发现的 v4 文本差异 <span>＋</span></summary><div class="detail-body"><ul><li>正文 WebArena 协议是 5 次尝试（p.5），Table 11 的 episodes 写为 50（p.21）；此处主结果按正文口径解释。</li><li>正文写 z+βA，实际算法含优势归一化。Eq. (25)（p.16）分母只加一次 ε，Algorithm 1（p.26）写了两次；案例遵循 Eq. (25)，ε=10⁻⁸ 是教学选择。</li><li>Table 14（p.22）中 Qwen3-32B 的 Zork1 平均分是 42.1，Appendix O.4（p.23）同底座文字使用了 53.0；主表中 53.0 对应 Gemini 设置。不要混成同一组实验。</li><li>超参数表没有明确 β；口头置信分到 logit 的唯一映射、空记忆处理需与固定版本代码核对。</li></ul></div></details>
+    </div></section>
+
+    <section class="wrap outline-section" id="outline">
+      <div class="section-heading"><div><p class="section-number">05 / 一起决定 PPT 放什么</p><h2>内容先讲清楚，再决定页数</h2></div><p>勾选想保留的内容，写下需要调整的地方。<br>清单仅保存在当前浏览器，可复制回聊天。</p></div>
+      <div class="outline-layout"><div><div id="outline-options"></div><label class="notes-label" for="discussion-notes">你希望怎么改？</label><textarea id="discussion-notes" rows="4" placeholder="例如：基础概念少讲一点；保留所有手算；理论推导移到附录。"></textarea></div><aside class="outline-summary"><p class="mini-caption">30 分钟组会 · 内容草案</p><h3 id="outline-count"></h3><ul id="outline-selected"></ul><button class="button primary" type="button" id="copy-outline">复制讨论清单</button><button class="button secondary" type="button" id="download-outline">下载清单</button><p class="fineprint" id="copy-status" role="status">复制后粘贴到聊天，我们按你的选择继续改。</p></aside></div>
+    </section>
+  </main>
+  <footer class="footer wrap"><div><b>JitRL · 交互式论文精读</b><p>Just-In-Time Reinforcement Learning: Continual Learning in LLM Agents Without Gradient Updates</p><p>Yibo Li et al. · arXiv:2601.18510v4 · 2026-09-27。以用户提供的 v4 为准，教学推算与论文实测结果分开标注。</p></div><a href="https://arxiv.org/abs/2601.18510v4" target="_blank" rel="noreferrer">论文与引用 ↗</a></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
