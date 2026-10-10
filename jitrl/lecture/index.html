@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#143b37">
+  <meta name="description" content="JitRL 方法讲义：顺着一个完整的手算案例，理解 Memory、奖励、状态检索、V/Q 和策略更新。">
+  <title>JitRL 方法讲义 · 从经验记录到动作概率</title>
+  <link rel="stylesheet" href="lecture.css">
+</head>
+<body>
+  <header class="toolbar">
+    <a class="brand" href="#page-1">JitRL <span>方法讲义</span></a>
+    <nav aria-label="阅读模式"><button id="read-mode" aria-pressed="true">连续阅读</button><button id="slide-mode" aria-pressed="false">逐页演示</button><button id="toc-toggle" aria-expanded="false">目录</button><a href="https://arxiv.org/abs/2601.18510v4" target="_blank" rel="noreferrer">原论文</a></nav>
+  </header>
+  <aside class="toc" id="toc" hidden><h2>讲解顺序</h2><p>沿一个案例读完计算链。标有“深入”的页可留作讨论。</p><div id="toc-links"></div></aside>
+  <main id="pages"></main>
+  <nav class="pager" aria-label="翻页"><button id="previous" aria-label="上一页">←</button><span id="page-position"></span><button id="next" aria-label="下一页">→</button><button id="return-read">回到阅读</button></nav>
+  <script type="module" src="lecture.js"></script>
+</body>
+</html>
